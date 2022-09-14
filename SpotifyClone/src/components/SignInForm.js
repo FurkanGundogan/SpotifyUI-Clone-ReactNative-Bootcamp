@@ -13,8 +13,12 @@ import { setUser } from "../store";
 // import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { signIn } from "../store/index";
 const SignInForm = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const initialState = {
     id: "0",
     email: "furkangundogan14@outlook.com",
@@ -34,31 +38,31 @@ const SignInForm = () => {
   const login = () => {
     const email = userInfo?.email;
     const password = userInfo?.password;
-    console.log(
-      "url:",
-      `http://192.168.1.20:3000/user?email=${email}&password=${password}`
-    );
-    /*axios
-          .get(`http://192.168.1.20:3000/users?email=${email}&password=${password}`)
-          .then(response => {
-            submitUser(response.data[0]);
-            console.log('login completed', response.data[0]);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((response) => {
+        dispatch(
+          signIn({
+            email: email,
+            password: password,
           })
-          .catch(error => {
-            console.log(error);
-            Alert.alert("Invalid email or password");
-          });*/
+        );
+        submitUserToLocal({email,password})
+        Alert.alert("Sign In Complete",response.user.email)
+      })
+      .catch((err) => {
+        Alert.alert(err)
+        
+      });
+
     console.log("giris istegi");
   };
-  const dispatch = useDispatch();
-  const submitUser = async (data) => {
+  
+  const submitUserToLocal = async (data) => {
     const backupinfo = { ...data };
     const jsonValue = JSON.stringify(backupinfo);
     await AsyncStorage.setItem("@user", jsonValue);
-    dispatch(setUser(data));
-
     console.log("user locale set completed:", data);
-  }; // eslint-disable-next-line no-console
+  }; 
 
   return (
     <View style={styles.container}>

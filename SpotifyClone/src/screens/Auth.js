@@ -1,40 +1,42 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { StyleSheet} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
-//import axios from 'axios';
-
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../store";
 import LoadingForLoginScreen from "./LoadingForLoginScreen";
 import HomeStackNav from "../navigations/HomeStackNav";
 import SignNav from "../navigations/SignNav";
+import { auth } from "../utils/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { signIn } from "../store";
 const Auth = () => {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
-  const user = useSelector((state) => state.user);
-  console.log("redux user:", user);
+
+  const myauth = useSelector((state) => state.auth);
+  console.log("redux user:", myauth);
 
   const getUserFromLocal = async () => {
-    const value = await AsyncStorage.getItem("@user"); // eslint-disable-next-line no-console
-    // eslint-disable-next-line no-console
+    const value = await AsyncStorage.getItem("@user");
+    
     console.log("local val:", value);
     if (value !== null) {
       let myval = JSON.parse(value);
       const { email, password } = myval;
-      /*axios
-          .get(
-            `http://192.168.1.20:3000/users?email=${email}&password=${password}`,
-          )
-          .then(response => {
-            console.log('auto login user', response.data?.[0]);
-            dispatch(setUser(response.data?.[0]));
+      console.log("local email:", email);
+      console.log("password:", password);
+
+      signInWithEmailAndPassword(auth, email, password).then((response) => {
+        console.log("response:", response);
+        dispatch(
+          signIn({
+            email: email,
+            password: password,
           })
-          .catch(error => {
-            console.log(error);
-          })
-          .finally(() => setloading(false));*/
-      console.log("Giris İslemi Yap");
-      setloading(false);
+        );
+        console.log("Local User Sign In Complete reduxa yazildi");
+        setloading(false);
+      });
+      
     } else {
       setloading(false);
     }
@@ -47,7 +49,7 @@ const Auth = () => {
 
   return (
     <>
-      {user ? (
+      {myauth.user ? (
         <HomeStackNav />
       ) : loading ? (
         <LoadingForLoginScreen />

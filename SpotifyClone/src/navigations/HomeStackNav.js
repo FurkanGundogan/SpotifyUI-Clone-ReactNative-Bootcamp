@@ -1,11 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { logOut } from '../store';
 const HomeStackNav = () => {
+  const dispatch=useDispatch()
+  const logout = async () => {
+    dispatch(logOut(null));
+    await AsyncStorage.removeItem('@user');
+  };
   return (
-    <View>
+    <SafeAreaView>
       <Text>HomeStackNav</Text>
-    </View>
+      <TouchableOpacity onPress={logout}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   )
 }
 

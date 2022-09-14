@@ -1,12 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Auth from "./src/screens/Auth";
-import {
-  SafeAreaProvider,
-  initialWindowMetrics,
-  SafeAreaView,
-} from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 

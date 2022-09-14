@@ -67,7 +67,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { signIn } = authSlice.actions;
+export const { signIn,logOut } = authSlice.actions;
 export const { setUser } = userSlice.actions;
 export const { toggleTheme } = themeSlice.actions;
 export const { setMovieList } = movieSlice.actions;
