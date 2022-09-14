@@ -2,18 +2,20 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Auth from "./src/screens/Auth";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+  SafeAreaView,
+} from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <SafeAreaView>
-        <Provider store={store}>
+      <Provider store={store}>
         <Auth />
-        </Provider>
-      </SafeAreaView>
+      </Provider>
     </NavigationContainer>
   );
 }
