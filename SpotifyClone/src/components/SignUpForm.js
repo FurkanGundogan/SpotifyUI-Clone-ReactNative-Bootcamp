@@ -6,64 +6,70 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import React, { useState } from "react";
-import { setUser } from "../store";
-// import axios from 'axios';
-import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-const SignInForm = () => {
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+
+const SignUpForm = () => {
   const navigation = useNavigation();
   const initialState = {
     id: "0",
     email: "furkangundogan14@outlook.com",
     password: "123123",
+    confirmPassword: "123123",
+    firstName: "Furkan",
+    lastName: "Gundogan",
+    username: "furu14",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Jason_Statham_at_Marvel-Rolle.jpg/640px-Jason_Statham_at_Marvel-Rolle.jpg",
   };
+
   const [userInfo, setuserInfo] = useState(initialState);
   const handleChange = (e, name) => {
     setuserInfo((prevState) => ({
       ...prevState,
       [name]: e,
     }));
-    console.log(userInfo);
+   
+  };
+  const submitUser = async () => {
+    postUser(userInfo);
   };
 
-  const login = () => {
-    const email = userInfo?.email;
-    const password = userInfo?.password;
-    console.log(
-      "url:",
-      `http://192.168.1.20:3000/user?email=${email}&password=${password}`
-    );
-    /*axios
-          .get(`http://192.168.1.20:3000/users?email=${email}&password=${password}`)
-          .then(response => {
-            submitUser(response.data[0]);
-            console.log('login completed', response.data[0]);
-          })
-          .catch(error => {
-            console.log(error);
-            Alert.alert("Invalid email or password");
-          });*/
-    console.log("giris istegi");
+  const postUser = (userInfo) => {
+    createUserWithEmailAndPassword(
+      auth,
+      userInfo.email,
+      userInfo.password
+    ).then((response) => {
+      Alert.alert("Congratulations Your Account Created. Please Sign In!");
+      navigation.navigate("Sign In");
+    });
   };
-  const dispatch = useDispatch();
-  const submitUser = async (data) => {
-    const backupinfo = { ...data };
-    const jsonValue = JSON.stringify(backupinfo);
-    await AsyncStorage.setItem("@user", jsonValue);
-    dispatch(setUser(data));
-
-    console.log("user locale set completed:", data);
-  }; // eslint-disable-next-line no-console
 
   return (
     <View style={styles.container}>
-      <Text style={styles.APPtitle}>Spotify</Text>
-      <Text style={styles.title}>SIGN IN</Text>
+      <Text style={styles.APPtitle}>MOVIE APP</Text>
+      <Text style={styles.title}>SIGN UP</Text>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Firstname"
+        value={userInfo?.firstName}
+        onChangeText={(e) => handleChange(e, "firstname")}
+      />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Lastname"
+        value={userInfo?.lastName}
+        onChangeText={(e) => handleChange(e, "lastname")}
+      />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Username"
+        value={userInfo?.username}
+        onChangeText={(e) => handleChange(e, "username")}
+      />
       <TextInput
         style={styles.textInput}
         placeholder="Email"
@@ -77,27 +83,34 @@ const SignInForm = () => {
         value={userInfo?.password}
         onChangeText={(e) => handleChange(e, "password")}
       />
-      <TouchableOpacity style={styles.submitbutton} onPress={login}>
-        <Text style={styles.buttonText}>SIGN IN</Text>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Confirm Password"
+        secureTextEntry
+        value={userInfo?.confirmPassword}
+        onChangeText={(e) => handleChange(e, "confirmPassword")}
+      />
+      <TouchableOpacity style={styles.submitbutton} onPress={submitUser}>
+        <Text style={styles.buttonText}>SIGN UP</Text>
       </TouchableOpacity>
-      <Text style={styles.askText}>Dont't have an account?</Text>
+      <Text style={styles.askText}>Already have an account?</Text>
       <TouchableOpacity
         style={styles.submitbutton}
-        onPress={() => navigation.navigate("Sign Up")}
+        onPress={() => navigation.navigate("Sign In")}
       >
-        <Text style={styles.buttonText}>SIGN UP NOW !</Text>
+        <Text style={styles.buttonText}>SIGN IN</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: 128,
+    paddingTop: 64,
   },
   APPtitle: {
     fontWeight: "800",
