@@ -27,6 +27,7 @@ const MainBottomNav = () => {
         component={HomeStackNav}
         options={{
           title: "Home",
+          headerShown:false,
           tabBarIcon: () => (
             <MaterialCommunityIcons
               name="home"
