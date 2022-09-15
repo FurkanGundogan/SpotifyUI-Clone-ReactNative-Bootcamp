@@ -13,27 +13,27 @@ const Auth = () => {
   const [loading, setloading] = useState(false);
 
   const myauth = useSelector((state) => state.auth);
-  console.log("redux user:", myauth);
+  //console.log("redux user:", myauth);
 
   const getUserFromLocal = async () => {
     const value = await AsyncStorage.getItem("@user");
     
-    console.log("local val:", value);
+    //console.log("local val:", value);
     if (value !== null) {
       let myval = JSON.parse(value);
       const { email, password } = myval;
-      console.log("local email:", email);
-      console.log("password:", password);
+      //console.log("local email:", email);
+      //console.log("password:", password);
 
       signInWithEmailAndPassword(auth, email, password).then((response) => {
-        console.log("response:", response);
+        //console.log("response:", response);
         dispatch(
           signIn({
             email: email,
             password: password,
           })
         );
-        console.log("Local User Sign In Complete reduxa yazildi");
+        //console.log("Local User Sign In Complete reduxa yazildi");
         setloading(false);
       });
       

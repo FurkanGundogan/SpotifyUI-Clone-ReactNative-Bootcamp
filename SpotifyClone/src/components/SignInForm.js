@@ -32,7 +32,7 @@ const SignInForm = () => {
       ...prevState,
       [name]: e,
     }));
-    console.log(userInfo);
+    //console.log(userInfo);
   };
 
   const login = () => {
@@ -54,14 +54,14 @@ const SignInForm = () => {
         
       });
 
-    console.log("giris istegi");
+    //console.log("giris istegi");
   };
   
   const submitUserToLocal = async (data) => {
     const backupinfo = { ...data };
     const jsonValue = JSON.stringify(backupinfo);
     await AsyncStorage.setItem("@user", jsonValue);
-    console.log("user locale set completed:", data);
+    //console.log("user locale set completed:", data);
   }; 
 
   return (
