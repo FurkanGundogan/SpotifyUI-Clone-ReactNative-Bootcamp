@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const HomeStackNav = () => {
+const ProfileStackNav = () => {
   return (
     <View>
-      <Text>HomeStackNav</Text>
+      <Text>ProfileStackNav</Text>
     </View>
   )
 }
 
-export default HomeStackNav
+export default ProfileStackNav
 
 const styles = StyleSheet.create({})

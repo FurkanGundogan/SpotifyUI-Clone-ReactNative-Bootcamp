@@ -3,11 +3,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingForLoginScreen from "./LoadingForLoginScreen";
-import HomeStackNav from "../navigations/HomeStackNav";
 import SignNav from "../navigations/SignNav";
 import { auth } from "../utils/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signIn } from "../store";
+import MainBottomNav from "../navigations/MainBottomNav";
 const Auth = () => {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
@@ -50,7 +50,7 @@ const Auth = () => {
   return (
     <>
       {myauth.user ? (
-        <HomeStackNav />
+        <MainBottomNav />
       ) : loading ? (
         <LoadingForLoginScreen />
       ) : (
