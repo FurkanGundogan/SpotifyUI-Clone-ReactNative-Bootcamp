@@ -1,14 +1,15 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-import IconFeather from 'react-native-vector-icons/Feather';
+import Entypo from '@expo/vector-icons/Entypo'
 import { useSelector } from 'react-redux';
 import { imageUrl } from '../utils/lastfmAPI';
 //import useTheme from '../hooks/useTheme';
-const UserInfo = () => {
+const UserInfo = ({navigation}) => {
   const {theme} =""
   const {user} = useSelector(state => state.auth);
   console.log("user info:",user)
+  
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -25,6 +26,9 @@ const UserInfo = () => {
       <Text style={{...styles.infoText,...theme?.userInfoText}}>
         {user?.firstname} {user?.lastname}
       </Text>
+      <TouchableOpacity style={styles.pointIcon} onPress={()=>navigation.navigate('ProfileEdit')}>
+      <Entypo name={"dots-three-horizontal"} size={24} color="gray" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -61,5 +65,9 @@ const styles = StyleSheet.create({
   infoUsername: {
     color: '#54b7f0',
     letterSpacing: 0.4,
-  },
+  },pointIcon:{
+    position:"absolute",
+    right:24,
+    top:8
+  }
 });
