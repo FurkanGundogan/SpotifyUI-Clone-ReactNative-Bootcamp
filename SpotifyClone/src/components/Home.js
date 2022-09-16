@@ -7,13 +7,14 @@ import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { setHomeTags } from "../store";
 import TagList from "./TagList";
-import { useState } from "react";
+
 import NewReleases from "./NewReleases";
 const Home = () => {
-  const navigation = useNavigation();
+
   const dispatch=useDispatch()
-  const homeTags = useSelector(state => state?.homeTags);
-  //console.log("redux home tags:",homeTags)
+
+  const likedSongs = useSelector(state => state?.likedSongs);
+  console.log(likedSongs)
   useEffect(() => {
     getCtgs()
   }, []);

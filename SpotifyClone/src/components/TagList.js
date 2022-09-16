@@ -9,11 +9,12 @@ import {
 import React from "react";
 import { useSelector } from "react-redux";
 import { tagImageList } from "../utils/lastfmAPI";
+import { useNavigation } from "@react-navigation/native";
 const TagList = () => {
-  
+  const navigation = useNavigation()
   const homeTags = useSelector((state) => state?.homeTags);
   const goTagMusics = (name) => {
-
+    navigation.navigate('HomeItemDetail',{tagName:name})
   };
   const TabItem = ({ item }) => {
     const url=tagImageList?.filter(tag=>tag?.name===item?.name)?.[0].url

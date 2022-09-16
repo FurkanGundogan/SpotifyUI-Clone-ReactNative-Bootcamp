@@ -1,15 +1,31 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { imageUrl } from "../utils/lastfmAPI";
-
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { dislikeSong, likeSong } from "../store";
+import { useEffect } from "react";
 const MusicListItem = ({ item, url, index }) => {
   let size = 100 * index;
   let myurl = imageUrl + size + "/" + size;
-  console.log("item:", item);
+  const [like, setlike] = useState(false)
+  const dispatch=useDispatch()
+ 
+  const triggerLike = () => {
+    setlike(!like)
+    if(like){
+      dispatch(dislikeSong(item))
+    }else{
+      dispatch(likeSong(item))
+    }
+   
+  }
+
   return (
     <TouchableOpacity
       style={styles.tabItemWrapper}
-      onPress={() => goTagMusics(item?.name)}
+      
     >
       <View style={styles.imageContainer}>
         <Image
@@ -28,6 +44,9 @@ const MusicListItem = ({ item, url, index }) => {
             item?.artist?.name.slice(1)}
         </Text>
       </View>
+      <TouchableOpacity style={styles.iconWrapper} onPress={triggerLike}>
+      <Ionicons name={like?"heart":"heart-outline"} size={32} color="green" />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
@@ -63,5 +82,12 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },icon:{
+    color:"white"
   },
+  iconWrapper:{
+    position:"absolute",
+    
+    right:32
+  }
 });
