@@ -21,6 +21,14 @@ const MusicListItem = ({ item, url, index }) => {
     }
    
   }
+  const likedSongs = useSelector(state => state?.likedSongs);
+  useEffect(() => {
+    const filtered=likedSongs.filter(music=>music.name===item.name)
+    if(filtered.length >0){
+      setlike(true)
+    }
+  }, [])
+  
 
   return (
     <TouchableOpacity
