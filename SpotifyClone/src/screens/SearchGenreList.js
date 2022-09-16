@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import HomeItemDetail from '../components/HomeItemDetail'
 
 const SearchGenreList = () => {
   return (
-    <View>
-      <Text>SearchGenreList</Text>
-    </View>
+    <HomeItemDetail/>
   )
 }
 

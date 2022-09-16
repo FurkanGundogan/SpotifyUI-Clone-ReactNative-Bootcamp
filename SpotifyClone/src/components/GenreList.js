@@ -14,7 +14,7 @@ import {
     const navigation = useNavigation()
     const searchTags = useSelector((state) => state?.searchTags);
     const goTagMusics = (name) => {
-      navigation.navigate('HomeItemDetail',{tagName:name})
+      navigation.navigate('SearchGenreList',{tagName:name})
     };
     const TabItem = ({ item }) => {
       const url=tagImageList?.filter(tag=>tag?.name===item?.name)?.[0]?.url
