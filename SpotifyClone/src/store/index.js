@@ -73,7 +73,7 @@ const homeTagsSlice = createSlice({
     setHomeTags: (state, action) => {
       const tags = action.payload;
       if (tags === null) return null;
-      return [...tags];
+      return tags;
     },
   },
 });
@@ -106,14 +106,41 @@ const likedSongsSlice = createSlice({
     },
   },
 });
+
+const searchTagsSlice = createSlice({
+  name: "searchTags",
+  initialState: [],
+  reducers: {
+    setSearchTags: (state, action) => {
+      const tags = action.payload;
+      if (tags === null) return null;
+      return tags;
+    },
+  },
+});
+
+const searchResultsSlice = createSlice({
+  name: "searchResults",
+  initialState: [],
+  reducers: {
+    setSearchResults: (state, action) => {
+      const results = action.payload;
+      if (results === null) return null;
+      return results;
+    },
+  },
+});
+
 export const { signIn,logOut } = authSlice.actions;
 export const { setUser } = userSlice.actions;
 export const { toggleTheme } = themeSlice.actions;
 export const { setMovieList } = movieSlice.actions;
 export const { setSearchList } = searchListSlice.actions;
 export const { setHomeTags } = homeTagsSlice.actions;
+export const { setSearchTags } = searchTagsSlice.actions;
 export const { setHomeNewReleases } = homeNewReleasesSlice.actions;
 export const { likeSong,dislikeSong } = likedSongsSlice.actions;
+export const { setSearchResults } = searchResultsSlice.actions;
 export const store = configureStore({
   reducer: combineReducers({
     user: userSlice.reducer,
@@ -122,7 +149,9 @@ export const store = configureStore({
     searchList: searchListSlice.reducer,
     auth: authSlice.reducer,
     homeTags:homeTagsSlice.reducer,
+    searchTags:searchTagsSlice.reducer,
     homeNewReleases:homeNewReleasesSlice.reducer,
-    likedSongs:likedSongsSlice.reducer
+    likedSongs:likedSongsSlice.reducer,
+    searchResults:searchResultsSlice.reducer
   }),
 });

@@ -17,7 +17,7 @@ const TagList = () => {
     navigation.navigate('HomeItemDetail',{tagName:name})
   };
   const TabItem = ({ item }) => {
-    const url=tagImageList?.filter(tag=>tag?.name===item?.name)?.[0].url
+    const url=tagImageList?.filter(tag=>tag?.name===item?.name)?.[0]?.url
     return(
     <TouchableOpacity
       style={styles.tabItemWrapper}

@@ -39,8 +39,10 @@ const MainBottomNav = () => {
       />
       <Tab.Screen
         name="SearchStackNav"
+        
         component={SearchStackNav}
         options={{
+          headerShown:false,
           title: "Search",
           tabBarIcon: () => (
             <IconSearch name="search" size={28} style={theme?.tabBarIcon} />
