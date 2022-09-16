@@ -5,7 +5,7 @@
 ###### [LastFm API](https://www.last.fm/api/show/chart.getTopArtists) implemented as main song API.
 ###### [Redux Toolkit](https://redux-toolkit.js.org/) used for state management.
 ###### [Axios](https://axios-http.com/docs/intro) used for handle API requests.
-##### Note: Random images are used instead of original part images.
+##### Note: Random images are used instead of original track images.
 ##### Demo Records:
 
 
