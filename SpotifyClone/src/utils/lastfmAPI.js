@@ -26,3 +26,5 @@ export const tagImageList = [
     url: "https://play-lh.googleusercontent.com/JpdeHAd9gPX17tKk3FuVmUTVK_nDiegf7Fdgwd8wtr-vWHyUqfCnCXRTBGkK6-fCVKtx",
   },
 ];
+
+export const imageUrl="https://picsum.photos/"

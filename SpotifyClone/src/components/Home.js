@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setHomeTags } from "../store";
 import TagList from "./TagList";
 import { useState } from "react";
+import NewReleases from "./NewReleases";
 const Home = () => {
   const navigation = useNavigation();
   const dispatch=useDispatch()
@@ -30,16 +31,30 @@ const Home = () => {
   };
 
   return (
-    <View>
-      <Text>Home</Text>
+    <>
       <TagList/>
-      <TouchableOpacity onPress={() => navigation.navigate("HomeItemDetail")}>
-        <Text>Go Detail</Text>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.NewReleasesTitleWrapper}>
+      <Text style={styles.NewReleasesTitle}>NEW RELEASES FROM TURKEY</Text>
+      </View>
+      <NewReleases/>
+    </>
   );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  NewReleasesTitleWrapper:{
+    paddingTop:-12,
+    padddingBottom:8,
+    backgroundColor:"black",
+    height:40
+  },
+  NewReleasesTitle:{
+    color:"white",
+    fontSize:16,
+    textAlign:"center",
+    backgroundColor:"black",
+    fontWeight:"800"
+  }
+});

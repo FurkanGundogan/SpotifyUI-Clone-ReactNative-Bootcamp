@@ -49,14 +49,14 @@ export default TagList;
 
 const styles = StyleSheet.create({
   tabsContainer: {
-    marginTop: 8,
     padding: 8,
-    width:900
-
+    width:900,
+    backgroundColor:"black",
+    height:400
   },
   tabItemWrapper: {
 
-    backgroundColor: "black",
+    backgroundColor: "#2a2b2a",
     margin: 4,
     width: 175,
     borderRadius: 8,
