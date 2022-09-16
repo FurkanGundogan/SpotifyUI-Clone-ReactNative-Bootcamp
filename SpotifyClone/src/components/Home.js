@@ -14,7 +14,7 @@ const Home = () => {
   const dispatch=useDispatch()
 
   const likedSongs = useSelector(state => state?.likedSongs);
-  console.log(likedSongs)
+  //console.log(likedSongs)
   useEffect(() => {
     getCtgs()
   }, []);

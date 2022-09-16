@@ -8,7 +8,7 @@ import { imageUrl } from '../utils/lastfmAPI';
 const UserInfo = ({navigation}) => {
   const {theme} =""
   const {user} = useSelector(state => state.auth);
-  console.log("user info:",user)
+  //console.log("user info:",user)
   
   return (
     <View style={styles.container}>
