@@ -26,6 +26,8 @@ const MusicListItem = ({ item, url, index }) => {
     const filtered=likedSongs.filter(music=>music.name===item.name)
     if(filtered.length >0){
       setlike(true)
+    }else{
+      setlike(false)
     }
   }, [])
   

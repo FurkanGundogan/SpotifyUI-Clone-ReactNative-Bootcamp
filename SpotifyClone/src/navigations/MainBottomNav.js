@@ -54,6 +54,7 @@ const MainBottomNav = () => {
         component={ProfileStackNav}
         options={{
           title: "Profile",
+          headerShown:false,
           tabBarIcon: () => (
             <IconSearch name="user" size={28} style={theme?.tabBarIcon} />
           ),
