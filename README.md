@@ -1,6 +1,6 @@
 #### React Native Bootcamp Assingment-5 Spotify CloneUI App
 ##### Features:
-###### [Expo](https://expo.dev/) This project created with expo.
+###### [Expo](https://expo.dev/) This project created with Expo.
 ###### [React Navigation](https://reactnavigation.org/docs/hello-react-navigation/) used for routing (Stack and BottomTab).
 ###### [LastFm API](https://www.last.fm/api/show/chart.getTopArtists) implemented as main song API.
 ###### [Redux Toolkit](https://redux-toolkit.js.org/) used for state management.
