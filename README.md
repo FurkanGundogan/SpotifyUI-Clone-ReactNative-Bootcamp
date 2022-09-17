@@ -2,6 +2,7 @@
 ##### Features:
 ###### [Expo](https://expo.dev/) This project created with Expo.
 ###### [React Navigation](https://reactnavigation.org/docs/hello-react-navigation/) used for routing (Stack and BottomTab).
+###### [Firebase](https://firebase.google.com/) used to handle email authentication.
 ###### [LastFm API](https://www.last.fm/api/show/chart.getTopArtists) implemented as main song API.
 ###### [Redux Toolkit](https://redux-toolkit.js.org/) used for state management.
 ###### [Axios](https://axios-http.com/docs/intro) used for handle API requests.
